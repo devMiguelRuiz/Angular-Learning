@@ -11,19 +11,21 @@ namespace AngularLearning.Controllers
 {
     public class BooksController : ApiController
     {
-        private AngularModelContext db = new AngularModelContext();
+        private AngularModelContext _db = new AngularModelContext();
 
         // GET: api/Books
         public IQueryable<Book> GetBooks()
         {
-            return db.Books;
+            var books = _db.Books;
+
+            return books;
         }
 
         // GET: api/Books/5
         [ResponseType(typeof(Book))]
         public async Task<IHttpActionResult> GetBook(int id)
         {
-            Book book = await db.Books.FindAsync(id);
+            Book book = await _db.Books.FindAsync(id);
             if (book == null)
             {
                 return NotFound();
@@ -46,11 +48,11 @@ namespace AngularLearning.Controllers
                 return BadRequest();
             }
 
-            db.Entry(book).State = EntityState.Modified;
+            _db.Entry(book).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -76,8 +78,8 @@ namespace AngularLearning.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Books.Add(book);
-            await db.SaveChangesAsync();
+            _db.Books.Add(book);
+            await _db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = book.Id }, book);
         }
@@ -86,14 +88,14 @@ namespace AngularLearning.Controllers
         [ResponseType(typeof(Book))]
         public async Task<IHttpActionResult> DeleteBook(int id)
         {
-            Book book = await db.Books.FindAsync(id);
+            Book book = await _db.Books.FindAsync(id);
             if (book == null)
             {
                 return NotFound();
             }
 
-            db.Books.Remove(book);
-            await db.SaveChangesAsync();
+            _db.Books.Remove(book);
+            await _db.SaveChangesAsync();
 
             return Ok(book);
         }
@@ -102,14 +104,14 @@ namespace AngularLearning.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool BookExists(int id)
         {
-            return db.Books.Count(e => e.Id == id) > 0;
+            return _db.Books.Count(e => e.Id == id) > 0;
         }
     }
 }
