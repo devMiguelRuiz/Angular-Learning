@@ -50,9 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AngularModelContext.cs" />
+    <Compile Include="Book.cs" />
+    <Compile Include="BookCategory.cs" />
     <Compile Include="Migrations\201612152125064_FirstMigration.cs" />
     <Compile Include="Migrations\201612152125064_FirstMigration.Designer.cs">
       <DependentUpon>201612152125064_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612152156147_AddingCategories.cs" />
+    <Compile Include="Migrations\201612152156147_AddingCategories.Designer.cs">
+      <DependentUpon>201612152156147_AddingCategories.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +70,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612152125064_FirstMigration.resx">
       <DependentUpon>201612152125064_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612152156147_AddingCategories.resx">
+      <DependentUpon>201612152156147_AddingCategories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

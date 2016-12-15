@@ -1,18 +1,16 @@
 namespace AngularLearning.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<AngularLearning.Data.AngularModelContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<AngularModelContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(AngularLearning.Data.AngularModelContext context)
+        protected override void Seed(AngularModelContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -26,7 +24,14 @@ namespace AngularLearning.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            context.Books.AddOrUpdate(b => b.Name, new Book { Name = ".Net Core" }, new Book { Name = "C# 6.0" });
+            context.Categories.AddOrUpdate(c=> c.Name, new BookCategory {Name = ".Net"}, new BookCategory {Name = "Javascript"});
+            context.SaveChanges();
+
+            var categoryId = context.Categories.First().Id;
+
+            context.Books.AddOrUpdate(b => b.Name, 
+                new Book {Name = ".Net Core", CategoryId = categoryId},
+                new Book {Name = "C# 6.0", CategoryId = categoryId});
         }
     }
 }
