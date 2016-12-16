@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace AngularLearning.Data
 {
@@ -12,6 +13,7 @@ namespace AngularLearning.Data
 
         public string Name { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Book> Books { get; set; }
     }
 }

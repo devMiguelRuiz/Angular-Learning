@@ -120,13 +120,17 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <Content Include="Scripts\Modules\IndexModule.js" />
+    <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\Controllers\IndexController.js" />
+    <Content Include="Scripts\Controllers\MainController.js" />
+    <Content Include="Views\index.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BookCategoriesController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
