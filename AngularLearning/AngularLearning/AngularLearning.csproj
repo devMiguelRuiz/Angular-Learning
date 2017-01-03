@@ -121,8 +121,10 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\Controllers\CategoryController.js" />
     <Content Include="Scripts\Controllers\IndexController.js" />
     <Content Include="Scripts\Controllers\MainController.js" />
+    <Content Include="Views\category.html" />
     <Content Include="Views\index.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

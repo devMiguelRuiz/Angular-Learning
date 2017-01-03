@@ -2,9 +2,10 @@
 
     var myAppModule = angular.module('BooksApp');
 
-    var indexController = function($scope, $http) {
+    var indexController = function ($scope, $http) {
+
         var success = function(data) {
-            $scope.books = data.data;
+            $scope.categories = data.data;
         };
 
         var error = function(reason) {

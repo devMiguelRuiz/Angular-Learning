@@ -2,7 +2,8 @@
     <h2>Book Categories</h2>
     <p>
         <ul>
-            <li ng-repeat="book in books"><a href="#">{{book.Name}}</a></li>
+            <!--<li ng-repeat="category in categories"><a ng-href="{{'#!/Category/' + category.Name}}">{{category.Name}}</a></li>-->
+            <li ng-repeat="category in categories"><a href="#!/Category/{{category.Name}}">{{category.Name}}</a></li>
         </ul>
     </p>
 </div>

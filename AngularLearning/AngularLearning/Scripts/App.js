@@ -1,17 +1,18 @@
-﻿(function () {
-    var app = angular.module('BooksApp', ['ngRoute']);
+﻿"use strict";
 
-    app.config(function ($routeProvider) {
-        $routeProvider
-        .when("/", {
-            templateUrl: "Views/index.html",
-            controller: "IndexController"
-        })
-        .when("/london", {
-            templateUrl: "london.htm"
-        })
-        .when("/paris", {
-            templateUrl: "paris.htm"
+(function() {
+    angular.module("BooksApp", ["ngRoute"])
+        .config(function($routeProvider) {
+            $routeProvider.when("/",
+                {
+                    templateUrl: "Views/index.html",
+                    controller: "IndexController"
+                })
+                .when("/Category/:categoryName",
+                {
+                    templateUrl: "Views/category.html",
+                    controller: "CategoryController"
+                })
+                .otherwise({ redirectTo: "/" });
         });
-    });
 })();
