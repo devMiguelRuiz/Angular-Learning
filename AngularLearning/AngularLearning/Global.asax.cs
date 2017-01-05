@@ -12,6 +12,8 @@ namespace AngularLearning
             {
                 config.Formatters.Remove(config.Formatters.XmlFormatter);
             });
+
+            AutoMapperConfiguration.RegisterMappings();
         }
     }
 }

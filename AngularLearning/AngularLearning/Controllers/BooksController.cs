@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -6,19 +7,19 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using AngularLearning.Data;
+using AngularLearning.Models;
+using AutoMapper;
 
 namespace AngularLearning.Controllers
 {
     public class BooksController : ApiController
     {
-        private AngularModelContext _db = new AngularModelContext();
+        private readonly AngularModelContext _db = new AngularModelContext();
 
         // GET: api/Books
-        public IQueryable<Book> GetBooks()
+        public List<BookDto> GetBooks()
         {
-            var books = _db.Books;
-
-            return books;
+            return _db.Books.ProjectToList<BookDto>();
         }
 
         // GET: api/Books/5

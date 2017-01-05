@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -6,24 +7,30 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using AngularLearning.Data;
+using AngularLearning.Models;
+using AutoMapper;
 
 namespace AngularLearning.Controllers
 {
     public class BookCategoriesController : ApiController
     {
-        private AngularModelContext db = new AngularModelContext();
+        private readonly AngularModelContext _db = new AngularModelContext();
 
         // GET: api/BookCategories
-        public IQueryable<BookCategory> GetCategories()
+        public List<BookCategoryDto> GetCategories()
         {
-            return db.Categories;
+            //var mapped =  Mapper.Map<List<BookCategoryDto>>(_db.Categories);
+            var mapped = _db.Categories.ProjectToList<BookCategoryDto>();
+
+            return mapped;
         }
 
         // GET: api/BookCategories/5
-        [ResponseType(typeof(BookCategory))]
+        [ResponseType(typeof(BookCategoryDto))]
         public async Task<IHttpActionResult> GetBookCategory(int id)
         {
-            BookCategory bookCategory = await db.Categories.FindAsync(id);
+            var bookCategory = await _db.Categories.Where(x => x.Id == id).ProjectToFirstOrDefaultAsync<BookCategoryDto>();
+
             if (bookCategory == null)
             {
                 return NotFound();
@@ -46,11 +53,11 @@ namespace AngularLearning.Controllers
                 return BadRequest();
             }
 
-            db.Entry(bookCategory).State = EntityState.Modified;
+            _db.Entry(bookCategory).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -76,8 +83,8 @@ namespace AngularLearning.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Categories.Add(bookCategory);
-            await db.SaveChangesAsync();
+            _db.Categories.Add(bookCategory);
+            await _db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = bookCategory.Id }, bookCategory);
         }
@@ -86,14 +93,14 @@ namespace AngularLearning.Controllers
         [ResponseType(typeof(BookCategory))]
         public async Task<IHttpActionResult> DeleteBookCategory(int id)
         {
-            BookCategory bookCategory = await db.Categories.FindAsync(id);
+            BookCategory bookCategory = await _db.Categories.FindAsync(id);
             if (bookCategory == null)
             {
                 return NotFound();
             }
 
-            db.Categories.Remove(bookCategory);
-            await db.SaveChangesAsync();
+            _db.Categories.Remove(bookCategory);
+            await _db.SaveChangesAsync();
 
             return Ok(bookCategory);
         }
@@ -102,14 +109,14 @@ namespace AngularLearning.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool BookCategoryExists(int id)
         {
-            return db.Categories.Count(e => e.Id == id) > 0;
+            return _db.Categories.Count(e => e.Id == id) > 0;
         }
     }
 }

@@ -1,25 +1,32 @@
 ﻿(function() {
 
-    var myAppModule = angular.module('BooksApp');
+    var myAppModule = angular.module("BooksApp");
 
     var categoryController = function($scope, $http, $routeParams) {
-        
-        $scope.CategoryName = $routeParams.categoryName;
 
-        //var success = function (data) {
-        //    $scope.categories = data.data;
-        //};
+        var url = "http://localhost:58831/api/bookCategories/" + $routeParams.CategoryId;
 
-        //var error = function (reason) {
-        //    alert(reason);
-        //};
+        var success = function(data) {
+            var category = data.data;
 
-        //// Simple GET request example:
-        //$http({
-        //    method: 'GET',
-        //    url: 'http://localhost:58831/api/bookCategories/'
-        //})
-        //    .then(success, error);
+            console.log(category);
+
+            $scope.categoryName = category.Name;
+            $scope.books = category.Books;
+        };
+
+        var error = function(reason) {
+            //alert(reason);
+            console.log(reason);
+        };
+
+
+        // Simple GET request example:
+        $http({
+                method: "GET",
+                url: url
+            })
+            .then(success, error);
     };
 
     myAppModule.controller("CategoryController", categoryController);
