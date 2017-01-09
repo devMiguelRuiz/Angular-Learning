@@ -62,6 +62,7 @@ namespace AngularLearning.Controllers
                     return NotFound();
                 }
 
+                // Automatically throw exception
                 throw;
             }
 
