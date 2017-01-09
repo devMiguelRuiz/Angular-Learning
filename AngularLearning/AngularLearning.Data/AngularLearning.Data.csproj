@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201612152156147_AddingCategories.Designer.cs">
       <DependentUpon>201612152156147_AddingCategories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701091831544_AddingAuthorName.cs" />
+    <Compile Include="Migrations\201701091831544_AddingAuthorName.Designer.cs">
+      <DependentUpon>201701091831544_AddingAuthorName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612152156147_AddingCategories.resx">
       <DependentUpon>201612152156147_AddingCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701091831544_AddingAuthorName.resx">
+      <DependentUpon>201701091831544_AddingAuthorName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

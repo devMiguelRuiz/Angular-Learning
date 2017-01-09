@@ -30,8 +30,8 @@ namespace AngularLearning.Data.Migrations
             var categoryId = context.Categories.First().Id;
 
             context.Books.AddOrUpdate(b => b.Name, 
-                new Book {Name = ".Net Core", CategoryId = categoryId},
-                new Book {Name = "C# 6.0", CategoryId = categoryId});
+                new Book {Name = ".Net Core", CategoryId = categoryId, Author = "Miguel Ruiz"},
+                new Book {Name = "C# 6.0", CategoryId = categoryId, Author = "Miguel Ruiz"});
         }
     }
 }
