@@ -61,10 +61,8 @@ namespace AngularLearning.Controllers
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return StatusCode(HttpStatusCode.NoContent);
