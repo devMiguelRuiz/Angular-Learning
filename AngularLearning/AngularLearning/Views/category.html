@@ -1,67 +1,19 @@
-﻿<div class="col-md-12">
+﻿<div class="container">
     <h2>{{categoryName}}</h2>
-    
-    <h3>Book List:</h3>
-    <!--<p>
-        <ul>
-            <li ng-repeat="book in books"><a ng-href="/Book/{{book.Id}}">{{book.Name}}</a></li>
-        </ul>
-    </p>-->
-    <!--<table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Author</th>
-            <th>Edit</th>
-        </tr>
+
+    <table class="table" ng-Show="books">
+        <thead class="thead-inverse">
+        <th>Name</th>
+        <th>Author</th>
+        <th>Edit</th>
         </thead>
         <tbody>
-        <tr ng-repeat="book in books">
-            <td>
-                <a ng-href="/Book/{{book.Id}}">{{book.Name}}</a>
-            </td>
-            <td>
-                {{book.Author}}
-            </td>
-            <td>
-                Edit
-            </td>
-        </tr>
+            <tr ng-repeat="book in books">
+                <td><a ng-href="/Book/{{book.Id}}">{{book.Name}}</a></td>
+                <td>{{book.Author}}</td>
+                <td>Edit</td>
+            </tr>
         </tbody>
-    </table>-->
-    
-    <div class="container">
-        <div class="row">
-            <div class="col">Name</div>
-            <div class="col">Author</div>
-            <div class="col">Edit</div>
-        </div>
-        <div class="row" ng-repeat="book in books">
-            <div class="col"><a ng-href="/Book/{{book.Id}}">{{book.Name}}</a></div>
-            <div class="col">{{book.Author}}</div>
-            <div class="col">Edit</div>
-        </div>
-    </div>
-    
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                1 of 2
-            </div>
-            <div class="col">
-                1 of 2
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                1 of 3
-            </div>
-            <div class="col">
-                1 of 3
-            </div>
-            <div class="col">
-                1 of 3
-            </div>
-        </div>
-    </div>
+    </table>
+    <p ng-hide="books.length">No books in this category</p>
 </div>
