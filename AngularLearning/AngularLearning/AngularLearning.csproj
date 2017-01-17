@@ -147,7 +147,9 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\Controllers\BookController.js" />
     <Content Include="Scripts\Controllers\CategoryController.js" />
+    <Content Include="Scripts\Controllers\EditBookController.js" />
     <Content Include="Scripts\Controllers\IndexController.js" />
     <Content Include="Scripts\Controllers\MainController.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -161,7 +163,9 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Views\book.html" />
     <Content Include="Views\category.html" />
+    <Content Include="Views\editBook.html" />
     <Content Include="Views\index.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

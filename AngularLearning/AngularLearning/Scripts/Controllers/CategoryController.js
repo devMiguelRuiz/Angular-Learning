@@ -9,17 +9,13 @@
         var success = function(data) {
             var category = data.data;
 
-            console.log(category);
-
             $scope.categoryName = category.Name;
             $scope.books = category.Books;
         };
 
         var error = function(reason) {
-            //alert(reason);
             console.log(reason);
         };
-
 
         // Simple GET request example:
         $http({

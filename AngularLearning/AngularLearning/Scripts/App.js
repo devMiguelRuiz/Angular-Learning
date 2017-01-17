@@ -13,6 +13,16 @@
                     templateUrl: "Views/category.html",
                     controller: "CategoryController"
                 })
+                .when("/Book/Edit/:BookId",
+                {
+                    templateUrl: "Views/editBook.html",
+                    controller: "EditBookController"
+                })
+                .when("/Book/:BookId",
+                {
+                    templateUrl: "Views/book.html",
+                    controller: "BookController"
+                })
                 .otherwise({ redirectTo: "/" });
 
             $locationProvider.html5Mode(true);

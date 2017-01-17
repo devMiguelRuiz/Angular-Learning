@@ -1,0 +1,13 @@
+﻿<div class="container">
+    <h2>{{book.Name}}</h2>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Author</label>
+        <label class="col-sm-10">{{book.Author}}</label>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Category</label>
+        <label class="col-sm-10">{{categoryName}}</label>
+    </div>
+    
+    <a ng-href="{{'/Category/' + book.CategoryId}}" class="btn btn-default"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back</a>
+</div>

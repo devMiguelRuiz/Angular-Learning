@@ -1,0 +1,19 @@
+﻿<div class="container">
+    <form name="newBookForm">
+        <h2>{{book.Name}}</h2>
+        <div class="form-group row">
+            <label for="bookName" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="bookName" placeholder="Name" ng-Model="book.Name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="author" class="col-sm-2 col-form-label">Author</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="author" placeholder="Author" ng-Model="book.Author">
+            </div>
+        </div>
+        <button type="submit" ng-disabled="newBookForm.$invalid" ng-click="save(book, newBookForm)" class="btn btn-primary pull-right">Save</button>
+    </form>
+    <a ng-href="{{'/Category/' + book.CategoryId}}" class="btn btn-default"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back</a>
+</div>
