@@ -1,41 +1,52 @@
-﻿(function () {
+﻿(function() {
 
     var myAppModule = angular.module("BooksApp");
 
-    var editBookController = function ($scope, $http, $routeParams) {
 
-        var url = "http://localhost:58831/api/books/" + $routeParams.BookId;
+    var editBookController = function($scope, $http, $routeParams, $window, host) {
 
-        var success = function (data) {
+        var baseUrl = host.getPath() + "/api/books/";
+        var url = baseUrl + $routeParams.BookId;
+
+        // generic function to show any error in the controller
+        function onError(data, status, headers, config) {
+            $window.console.log(data);
+            $window.console.log(status);
+            $window.console.log(headers);
+            $window.console.log(config);
+        }
+
+        // Promise to get the book info from the service
+        var showBookInfo = function(data) {
             $scope.book = data.data;
+            url = baseUrl + $scope.book.Id;
         };
 
-        var error = function (reason) {
-            console.log(reason);
-        };
-
+        // Save function
         $scope.save = function(book, newBookForm) {
 
             if (!newBookForm.$valid) {
-
-                alert("Invalid input data");
+                $window.alert("Invalid input data");
             }
 
             $http.put(url, $scope.book)
                 .then(function(response) {
-                        alert(response);
+                        $window.history.back();
                     },
-                    function(data, status, headers, config) {
-                        console.log(data);
-                        console.log(status);
-                        console.log(headers);
-                        console.log(config);
-                    });
+                    onError);
+        };
 
+        // Delete function
+        $scope.delete = function() {
+
+            $("#confirm").modal({ backdrop: "static", keyboard: false }).one("click","#delete",null,
+                    function() {
+                        $http.delete(url).then(function(response) { $window.history.back(); }, onError);
+                    });
         };
 
         // Simple GET request example:
-        $http({ method: "GET", url: url }).then(success, error);
+        $http({ method: "GET", url: url }).then(showBookInfo, onError);
     };
 
     myAppModule.controller("EditBookController", editBookController);

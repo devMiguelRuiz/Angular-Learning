@@ -13,7 +13,19 @@
                 <input type="text" class="form-control" id="author" placeholder="Author" ng-Model="book.Author">
             </div>
         </div>
+        <button type="button" ng-click="delete()" class="btn btn-danger pull-right">Delete</button>
         <button type="submit" ng-disabled="newBookForm.$invalid" ng-click="save(book, newBookForm)" class="btn btn-primary pull-right">Save</button>
     </form>
     <a ng-href="{{'/Category/' + book.CategoryId}}" class="btn btn-default"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back</a>
+    
+    <div id="confirm" class="modal hide fade">
+        <div class="modal-body">
+            Are you sure?
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+            <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+        </div>
+    </div>
 </div>
+

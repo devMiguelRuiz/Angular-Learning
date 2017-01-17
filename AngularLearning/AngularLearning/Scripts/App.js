@@ -1,8 +1,7 @@
 ﻿"use strict";
-
 (function() {
-    angular.module("BooksApp", ["ngRoute"])
-        .config(function ($routeProvider, $locationProvider) {
+    var app = angular.module("BooksApp", ["ngRoute"])
+        .config(function($routeProvider, $locationProvider) {
             $routeProvider.when("/",
                 {
                     templateUrl: "Views/index.html",
@@ -28,4 +27,12 @@
             $locationProvider.html5Mode(true);
         });
 
+    app.factory("host",["$location", function($location) {
+        var hostHelper = {};
+        hostHelper.getPath = function() {
+            return $location.protocol() + "://" + $location.host() + ":" + $location.port();
+        };
+        return hostHelper;
+        }
+    ]);
 })();

@@ -1,10 +1,8 @@
-﻿(function () {
+﻿(function() {
 
     var myAppModule = angular.module("BooksApp");
 
-    var bookController = function($scope, $http, $routeParams) {
-
-        var url = "http://localhost:58831/api/books/" + $routeParams.BookId;
+    var bookController = function($scope, $http, $routeParams, $window, host) {
 
         var success = function(data) {
             $scope.book = data.data;
@@ -12,11 +10,11 @@
         };
 
         var error = function(reason) {
-            console.log(reason);
+            $window.console.log(reason);
         };
 
         // Simple GET request example:
-        $http({ method: "GET", url: url }).then(success, error);
+        $http({ method: "GET", url: host.getPath()+ "/api/books/" + $routeParams.BookId }).then(success, error);
     };
 
     myAppModule.controller("BookController", bookController);
