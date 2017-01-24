@@ -12,6 +12,11 @@
                     templateUrl: "Views/category.html",
                     controller: "CategoryController"
                 })
+                .when("/Book/Add/:CategoryId",
+                {
+                    templateUrl: "Views/editBook.html",
+                    controller: "EditBookController"
+                })
                 .when("/Book/Edit/:BookId",
                 {
                     templateUrl: "Views/editBook.html",

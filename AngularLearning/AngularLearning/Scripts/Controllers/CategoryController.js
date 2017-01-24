@@ -4,6 +4,8 @@
 
     var categoryController = function($scope, $http, $routeParams, $window, host) {
 
+        $scope.categoryId = $routeParams.CategoryId;
+
         var success = function (data) {
 
             var category = data.data;
@@ -21,7 +23,7 @@
         };
 
         // Simple GET request example:
-        $http({ method: "GET", url: host.getPath() + "/api/bookCategories/" + $routeParams.CategoryId }).then(success, error);
+        $http({ method: "GET", url: host.getPath() + "/api/bookCategories/" + $scope.categoryId }).then(success, error);
     };
 
     myAppModule.controller("CategoryController", categoryController);
