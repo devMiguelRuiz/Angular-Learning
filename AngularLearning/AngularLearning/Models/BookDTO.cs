@@ -10,6 +10,7 @@
 
         public int CategoryId { get; set; }
 
+        // 
         public BookCategoryDto Category { get; set; }
     }
 }
