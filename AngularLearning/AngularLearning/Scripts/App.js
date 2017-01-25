@@ -7,6 +7,16 @@
                     templateUrl: "Views/index.html",
                     controller: "IndexController"
                 })
+                .when("/Category/Add/",
+                {
+                    templateUrl: "Views/editCategory.html",
+                    controller: "EditCategoryController"
+                })
+                .when("/Category/Edit/:CategoryId",
+                {
+                    templateUrl: "Views/editCategory.html",
+                    controller: "EditCategoryController"
+                })
                 .when("/Category/:CategoryId",
                 {
                     templateUrl: "Views/category.html",

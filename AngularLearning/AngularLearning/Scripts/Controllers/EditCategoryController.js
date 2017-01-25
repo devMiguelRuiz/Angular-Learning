@@ -2,23 +2,23 @@
 
     var editBookController = function ($scope, $http, $routeParams, $window, host) {
         // get the book Id from the route parameters
-        var bookId = $routeParams.BookId;
+        var categoryId = $routeParams.CategoryId;
 
         // flag to know if we are in isEdition mode
-        $scope.isEdition = (bookId != undefined);
+        $scope.isEdition = (categoryId != undefined);
 
         // calculate the base path
-        var baseUrl = host.getPath() + "/api/books/";
+        var baseUrl = host.getPath() + "/api/bookCategories/";
 
         // in the case we are editiong a book
         if ($scope.isEdition) {
 
             // lets create the url to get the book object
-            baseUrl = baseUrl + bookId;
+            baseUrl = baseUrl + categoryId;
 
             // Promise to get the book info from the service
             var showBookInfo = function(data) {
-                $scope.book = data.data;
+                $scope.category = data.data;
             };
 
             // Http request to get the Book Info
@@ -27,22 +27,12 @@
             // Delete function
             $scope.delete = function () {
 
-                if ($window.confirm("You are about to delete a book, do you want to proceed?") === true) {
+                if ($window.confirm("You are about to delete a category, do you want to proceed?") === true) {
                     $http.delete(baseUrl).then(function(response) { $window.history.back(); }, onError);
                 }
-
-                //$("#confirm")
-                //    .modal({ backdrop: "static" })
-                //    .on("click",
-                //        "#delete",
-                //        null,
-                //        function() {
-                //            $http.delete(baseUrl).then(function (response) { $window.history.back(); }, onError);
-                //        });
             };
         } else {
-            $scope.book = {};
-            $scope.book.CategoryId = $routeParams.CategoryId;
+            $scope.category = {};
         }
 
         var goBack = function() {
@@ -50,17 +40,17 @@
         };
 
         // Save function
-        $scope.save = function(book, newBookForm) {
+        $scope.save = function(category, newCategoryForm) {
 
-            if (!newBookForm.$valid) {
+            if (!newCategoryForm.$valid) {
                 $window.alert("Invalid input data");
                 return;
             }
 
             if ($scope.isEdition) {
-                $http.put(baseUrl, $scope.book).then(goBack,onError);
+                $http.put(baseUrl, $scope.category).then(goBack,onError);
             } else {
-                $http.post(baseUrl, $scope.book).then(goBack,onError);
+                $http.post(baseUrl, $scope.category).then(goBack,onError);
             }
         };
 
@@ -73,5 +63,5 @@
         }
     };
 
-    angular.module("BooksApp").controller("EditBookController", editBookController);
+    angular.module("BooksApp").controller("EditCategoryController", editBookController);
 })();

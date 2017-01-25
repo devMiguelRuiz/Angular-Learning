@@ -3,8 +3,8 @@
     var myAppModule = angular.module('BooksApp');
 
     var mainController = function ($scope) {
-        $scope.Title = "Angular Learning";
-        $scope.HelloWorld = "Hello Angular world!";
+        $scope.Title = "Angular Demo";
+        $scope.HelloWorld = "Hello Angular!";
     };
 
     myAppModule.controller("MainController", mainController);

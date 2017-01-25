@@ -151,6 +151,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Controllers\BookController.js" />
     <Content Include="Scripts\Controllers\CategoryController.js" />
+    <Content Include="Scripts\Controllers\EditCategoryController.js" />
     <Content Include="Scripts\Controllers\EditBookController.js" />
     <Content Include="Scripts\Controllers\IndexController.js" />
     <Content Include="Scripts\Controllers\MainController.js" />
@@ -169,6 +170,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Views\book.html" />
     <Content Include="Views\category.html" />
+    <Content Include="Views\editCategory.html" />
     <Content Include="Views\editBook.html" />
     <Content Include="Views\index.html" />
     <Content Include="Web.config">
