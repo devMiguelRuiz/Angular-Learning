@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -14,7 +13,17 @@ namespace AngularLearning.Controllers
 {
     public class BookCategoriesController : ApiController
     {
-        private readonly AngularModelContext _db = new AngularModelContext();
+        private readonly IAngularModelContext _db;
+
+        public BookCategoriesController()
+        {
+            _db = new AngularModelContext();
+        }
+
+        public BookCategoriesController(IAngularModelContext dbContext)
+        {
+            _db = dbContext;
+        }
 
         // GET: api/BookCategories
         public List<BookCategoryDto> GetCategories()
@@ -53,7 +62,8 @@ namespace AngularLearning.Controllers
                 return BadRequest();
             }
 
-            _db.Entry(bookCategory).State = EntityState.Modified;
+            _db.MarkAsModified(bookCategory);
+            //_db.Entry(bookCategory).State = EntityState.Modified;
 
             try
             {
@@ -65,10 +75,8 @@ namespace AngularLearning.Controllers
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return StatusCode(HttpStatusCode.NoContent);

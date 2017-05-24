@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -14,7 +13,17 @@ namespace AngularLearning.Controllers
 {
     public class BooksController : ApiController
     {
-        private readonly AngularModelContext _db = new AngularModelContext();
+        private readonly IAngularModelContext _db;
+
+        public BooksController()
+        {
+            _db = new AngularModelContext();
+        }
+
+        public BooksController(IAngularModelContext dbContext)
+        {
+            _db = dbContext;
+        }
 
         // GET: api/Books
         public List<BookDto> GetBooks()
@@ -49,7 +58,8 @@ namespace AngularLearning.Controllers
                 return BadRequest();
             }
 
-            _db.Entry(book).State = EntityState.Modified;
+            //_db.Entry(book).State = EntityState.Modified;
+            _db.MarkAsModified(book);
 
             try
             {

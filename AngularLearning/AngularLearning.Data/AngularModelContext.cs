@@ -2,11 +2,16 @@
 
 namespace AngularLearning.Data
 {
-    public class AngularModelContext : DbContext
+    public class AngularModelContext : DbContext, IAngularModelContext
     {
         public DbSet<Book> Books { get; set; }
 
         public DbSet<BookCategory> Categories { get; set; }
+
+        public void MarkAsModified<T>(T item) where T : class
+        {
+            Entry(item).State = EntityState.Modified;
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
